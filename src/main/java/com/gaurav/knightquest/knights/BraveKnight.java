@@ -1,9 +1,10 @@
 package com.gaurav.knightquest.knights;
 
+import org.springframework.beans.factory.BeanNameAware;
 import org.springframework.stereotype.Component;
 
 @Component
-public class BraveKnight implements Knight {
+public class BraveKnight implements Knight, BeanNameAware {
 
     private Quest quest;
 
@@ -14,5 +15,10 @@ public class BraveKnight implements Knight {
     @Override
     public void embarkOnQuest() {
         quest.embark();
+    }
+
+    @Override
+    public void setBeanName(String s) {
+        System.out.println("Bean Name: "+s);
     }
 }
