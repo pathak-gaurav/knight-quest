@@ -1,10 +1,7 @@
 package com.gaurav.knightquest.knights;
 
 import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.BeanFactory;
-import org.springframework.beans.factory.BeanFactoryAware;
-import org.springframework.beans.factory.BeanNameAware;
-import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.*;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
@@ -12,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class BraveKnight implements Knight, BeanNameAware, BeanFactoryAware,
-        ApplicationContextAware, BeanPostProcessor , InitializingBean {
+        ApplicationContextAware, BeanPostProcessor , InitializingBean, DisposableBean {
 
     private Quest quest;
 
@@ -57,5 +54,10 @@ public class BraveKnight implements Knight, BeanNameAware, BeanFactoryAware,
     @Override
     public void afterPropertiesSet() throws Exception {
         System.out.println("After Properties Set");
+    }
+
+    @Override
+    public void destroy() throws Exception {
+        System.out.println("Disposable Bean");
     }
 }
